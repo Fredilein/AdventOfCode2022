@@ -10,12 +10,7 @@ public class Day02 implements Solvable<Integer> {
                 { 4, 8, 3},
                 { 1, 5, 9},
                 { 7, 2, 6}};
-        int score = 0;
-        for (int[] round :
-                rounds) {
-            score += points[round[0]][round[1]];
-        }
-        return score;
+        return calcScore(points, rounds);
     }
 
     @Override
@@ -25,11 +20,12 @@ public class Day02 implements Solvable<Integer> {
                 { 3, 4, 8},
                 { 1, 5, 9},
                 { 2, 6, 7}};
+        return calcScore(points, rounds);
+    }
+
+    private Integer calcScore(int[][] points, List<int[]> rounds) {
         int score = 0;
-        for (int[] round :
-                rounds) {
-            score += points[round[0]][round[1]];
-        }
+        for (int[] round : rounds) score += points[round[0]][round[1]];
         return score;
     }
 
@@ -43,8 +39,7 @@ public class Day02 implements Solvable<Integer> {
         mapB.put("Y", 1);
         mapB.put("Z", 2);
         List<int[]> res = new ArrayList<>();
-        for (String line :
-                input) {
+        for (String line : input) {
             String[] hands = line.split(" ");
             res.add(new int[] {mapA.get(hands[0]), mapB.get(hands[1])});
         }

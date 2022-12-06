@@ -8,8 +8,9 @@ public class Day04 implements Solvable<Integer> {
         int contained = 0;
         for (String line : input) {
             String[] elves = line.split(",");
-            int[] elf0 = Arrays.stream(elves[0].split("-")).mapToInt(Integer::parseInt).toArray();
-            int[] elf1 = Arrays.stream(elves[1].split("-")).mapToInt(Integer::parseInt).toArray();
+            int[] elf0 = getRange(elves[0]);
+            int[] elf1 = getRange(elves[1]);
+
             if ((elf0[0] >= elf1[0] && elf0[1] <= elf1[1]) || (elf0[0] <= elf1[0] && elf0[1] >= elf1[1])) contained++;
         }
         return contained;
@@ -19,10 +20,14 @@ public class Day04 implements Solvable<Integer> {
         int overlap = 0;
         for (String line : input) {
             String[] elves = line.split(",");
-            int[] elf0 = Arrays.stream(elves[0].split("-")).mapToInt(Integer::parseInt).toArray();
-            int[] elf1 = Arrays.stream(elves[1].split("-")).mapToInt(Integer::parseInt).toArray();
+            int[] elf0 = getRange(elves[0]);
+            int[] elf1 = getRange(elves[1]);
             if (!(elf0[1] < elf1[0] || elf0[0] > elf1[1])) overlap++;
         }
         return overlap;
+    }
+
+    private int[] getRange(String r) {
+        return Arrays.stream(r.split("-")).mapToInt(Integer::parseInt).toArray();
     }
 }

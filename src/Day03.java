@@ -6,11 +6,9 @@ import java.util.Map;
 
 public class Day03 implements Solvable<Integer> {
     public Integer part1(List<String> input) {
-        Map<Character, Integer> priorities = new HashMap<>();
-        for (char ch='a'; ch <= 'z'; ++ch) priorities.put(ch, (int) ch - 96);
-        for (char ch='A'; ch <= 'Z'; ++ch) priorities.put(ch, (int) ch - 38);
-        int sum = 0;
+        Map<Character, Integer> priorities = getPriorities();
 
+        int sum = 0;
         for (String line : input) {
             char[] allItems = line.toCharArray();
             Map<Character, Integer> items = new HashMap<>();
@@ -27,11 +25,9 @@ public class Day03 implements Solvable<Integer> {
 
     @Override
     public Integer part2(List<String> input) {
-        Map<Character, Integer> priorities = new HashMap<>();
-        for (char ch='a'; ch <= 'z'; ++ch) priorities.put(ch, (int) ch - 96);
-        for (char ch='A'; ch <= 'Z'; ++ch) priorities.put(ch, (int) ch - 38);
-        int sum = 0;
+        Map<Character, Integer> priorities = getPriorities();
 
+        int sum = 0;
         for (int l = 0; l < input.size(); l+=3) {
             Map<Character, Integer> items = new HashMap<>();
             String line = input.get(l);
@@ -54,5 +50,12 @@ public class Day03 implements Solvable<Integer> {
             }
         }
         return sum;
+    }
+
+    private Map<Character, Integer> getPriorities() {
+        Map<Character, Integer> priorities = new HashMap<>();
+        for (char ch='a'; ch <= 'z'; ++ch) priorities.put(ch, (int) ch - 96);
+        for (char ch='A'; ch <= 'Z'; ++ch) priorities.put(ch, (int) ch - 38);
+        return priorities;
     }
 }

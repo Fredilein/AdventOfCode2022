@@ -13,9 +13,7 @@ public class Day01 implements Solvable<Integer> {
             if (line.isEmpty()) {
                 if (curr > max) max = curr;
                 curr = 0;
-            } else {
-                curr += Integer.parseInt(line);
-            }
+            } else curr += Integer.parseInt(line);
         }
         return max;
     }
@@ -23,14 +21,12 @@ public class Day01 implements Solvable<Integer> {
     @Override
     public Integer part2(List<String> input) {
         int curr = 0;
-        List<Integer> sums = new ArrayList<Integer>();
+        List<Integer> sums = new ArrayList<>();
         for (String line : input) {
             if (line.isEmpty()) {
                 sums.add(curr);
                 curr = 0;
-            } else {
-                curr += Integer.parseInt(line);
-            }
+            } else curr += Integer.parseInt(line);
         }
         Collections.sort(sums);
         Collections.reverse(sums);

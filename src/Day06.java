@@ -4,34 +4,27 @@ import java.util.*;
 
 public class Day06 implements Solvable<Integer> {
     public Integer part1(List<String> input) {
-        int markerLength = 4;
-        char[] mem = new char[markerLength];
         char[] stream = input.get(0).toCharArray();
-        for (int i = 0; i < markerLength; i++) {
-            mem[i] = stream[i];
-        }
-        for (int i = markerLength; i < stream.length; i++) {
-            Set<Character> s = new HashSet<Character>();
-            for (char c : mem) s.add(c);
-            if (s.size() == markerLength) return i;
-            mem[i%markerLength] =stream[i];
-        }
-        return -1;
+        return getMarker(stream, 4);
     }
 
     public Integer part2(List<String> input) {
-        int markerLength = 14;
-        char[] mem = new char[markerLength];
         char[] stream = input.get(0).toCharArray();
-        for (int i = 0; i < markerLength; i++) {
+        return getMarker(stream, 14);
+    }
+
+    private Integer getMarker(char[] stream, int length) {
+        char[] mem = new char[length];
+        for (int i = 0; i < length; i++) {
             mem[i] = stream[i];
         }
-        for (int i = markerLength; i < stream.length; i++) {
-            Set<Character> s = new HashSet<Character>();
+        for (int i = length; i < stream.length; i++) {
+            Set<Character> s = new HashSet<>();
             for (char c : mem) s.add(c);
-            if (s.size() == markerLength) return i;
-            mem[i%markerLength] =stream[i];
+            if (s.size() == length) return i;
+            mem[i % length] = stream[i];
         }
         return -1;
+
     }
 }
